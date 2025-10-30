@@ -6,7 +6,7 @@ import SectionHeading from '../components/SectionHeading.jsx';
 
 const features = [
   {
-    title: 'Fast-paced rounds',
+    title: 'Fun, engaging rounds',
     description:
       'Each game consists of 10 rounds of images from random countries, you get three guesses for each image, and can continue your game for 10 more rounds afterwards.',
   },
@@ -146,7 +146,7 @@ function GeoGuess() {
         <SectionHeading
           eyebrow="Gameplay loop"
           title="Every game is a world tour"
-          description="Made to be fun, competitive, and with infitie replayability."
+          description="Made to be fun, competitive, and with infinite replayability."
         />
         <div className="grid gap-6 md:grid-cols-3">
           {features.map((feature) => (
@@ -236,7 +236,7 @@ function GeoGuess() {
                 >
                   GeoGuess API
                 </a>
-                , and the whole experience is completely free.
+                .
               </span>
             </p>
             <p className="flex items-start gap-3">

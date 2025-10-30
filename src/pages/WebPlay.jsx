@@ -344,15 +344,14 @@ function WebPlay() {
   return (
     <section className="flex flex-col gap-10">
       <div className="flex flex-col gap-4">
-        <p className="text-sm uppercase tracking-[0.4em] text-accent">Web Demo</p>
+        <p className="text-sm uppercase tracking-[0.4em] text-accent">Web Alpha</p>
         <h1 className="text-4xl font-semibold text-white sm:text-5xl">
-          Take the GeoGuess web build for a spin
+          Play GeoGuess Online!
         </h1>
         <p className="max-w-3xl text-base leading-relaxed text-textSecondary">
-          This prototype mirrors the Android experience: ten rapid-fire rounds,
-          three guesses per panorama, and leaderboard-ready scoring powered by
-          the same GeoGuess API. App Check support keeps API calls gated while
-          falling back to offline play if Firebase credentials are missing.
+          This web version mirrors the Android experience: ten rapid-fire rounds,
+          three guesses per image, and leaderboard-ready scoring powered by
+          the same GeoGuess API.
         </p>
       </div>
 
@@ -404,7 +403,7 @@ function WebPlay() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                   >
-                    {loading ? 'Fetching panorama…' : 'Ready when you are'}
+                    {loading ? 'Fetching Image…' : 'Ready when you are'}
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -553,8 +552,8 @@ function WebPlay() {
             <p className="text-sm font-semibold text-textPrimary">Round pipeline</p>
             <p className="mt-2">
               {nextRound
-                ? 'Next panorama preloaded for a snappy round transition.'
-                : 'Prefetching the next panorama in the background…'}
+                ? 'Next image preloaded for a snappy round transition.'
+                : 'Prefetching the next image in the background…'}
             </p>
             {prefetchTimestamp && (
               <p className="mt-2 text-[0.7rem] uppercase tracking-[0.25em] text-textSecondary/60">
