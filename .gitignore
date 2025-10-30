@@ -5,3 +5,4 @@ dist/
 .pnp.loader.mjs
 .yarn/
 .gitpod.yml
+.env
