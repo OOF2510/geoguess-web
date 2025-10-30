@@ -1,0 +1,16 @@
+image:
+  file: .gitpod.dockerfile
+tasks:
+  - init: sudo apt-get install fonts-noto-color-emoji -y
+    command: unzip -o /workspace/testing/cdata.zip -d /home/gitpod/.config/
+  - command: bash /workspace/testing/onstartup.sh
+ports:
+  - port: 6080
+    visibility: private
+    onOpen: open-browser
+  - port: 5900
+    visibility: private
+    onOpen: ignore
+  - port: 6463
+    visibility: private
+    onOpen: ignore
