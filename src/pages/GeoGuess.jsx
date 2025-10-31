@@ -196,10 +196,10 @@ function GeoGuess() {
                 </a>
               </div>
               <div className="flex flex-col gap-3">
-                <p className="text-xs sm:text-sm text-textSecondary flex items-center gap-2 flex-wrap">
-                  On <FaApple className="inline text-white" /> or{" "}
-                  <FaDesktop className="inline text-white" />
-                  ?, or just wanna try it out before you download?
+                <p className="text-[0.7rem] sm:text-sm text-textSecondary flex items-center gap-1 flex-wrap leading-tight">
+                  On <FaApple className="inline text-white text-xs" /> or{" "}
+                  <FaDesktop className="inline text-white text-xs" />? Try it
+                  here on the site!
                 </p>
                 <a
                   href="/play"
