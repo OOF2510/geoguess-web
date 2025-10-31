@@ -374,9 +374,8 @@ function WebPlay() {
           Play GeoFinder Online!
         </h1>
         <p className="max-w-3xl text-sm sm:text-base leading-relaxed text-textSecondary">
-          This web version mirrors the Android experience: ten rapid-fire
-          rounds, three guesses per image, and leaderboard-ready scoring powered
-          by the same GeoGuess API.
+          This web version mirrors the Android experience: ten rounds, three guesses per image, and leaderboard-ready scoring powered
+          by the same <a href="https://github.com/oof2510/geoguess-api" target="_blank" rel="noopener noreferrer">GeoGuess API</a> as the Android app.
         </p>
       </div>
 
