@@ -7,6 +7,7 @@ import {
   FaDesktop,
   FaGithub,
   FaMap,
+  FaGlobe,
 } from "react-icons/fa6";
 import { PiRankingFill } from "react-icons/pi";
 import SectionHeading from "../components/SectionHeading.jsx";
@@ -196,13 +197,14 @@ function GeoGuess() {
               <div className="flex flex-col gap-3">
                 <p className="text-sm text-textSecondary flex items-center gap-2 flex-wrap">
                   On <FaApple className="inline text-white" /> or{" "}
-                  <FaDesktop className="inline text-white" />?, or just
-                  wanna try it out before you download?
+                  <FaDesktop className="inline text-white" />
+                  ?, or just wanna try it out before you download?
                 </p>
                 <a
                   href="/play"
-                  className="flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-6 py-3 font-medium text-textSecondary transition hover:border-accent/50 hover:bg-white/10 hover:text-accent w-full sm:w-auto"
+                  className="flex items-center justify-center gap-3 rounded-2xl border border-white/10 px-6 py-3 font-medium text-textSecondary transition hover:border-accent/50 hover:text-accent w-full sm:w-auto"
                 >
+                  <FaGlobe />
                   Play in Browser
                 </a>
               </div>
