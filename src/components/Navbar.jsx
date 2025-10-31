@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { FaBarsStaggered, FaXmark } from 'react-icons/fa6';
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
 
 const links = [
-  { to: '/', label: 'Overview' },
-  { to: '/play', label: 'Play the Web Demo' },
+  { to: "/", label: "Overview" },
+  { to: "/play", label: "Play the Web Demo" },
 ];
 
 function Navbar() {
   const [open, setOpen] = useState(false);
 
-  const toggle = () => setOpen(prev => !prev);
+  const toggle = () => setOpen((prev) => !prev);
   const close = () => setOpen(false);
 
   return (
@@ -21,10 +21,10 @@ function Navbar() {
           onClick={close}
           className="text-lg font-semibold tracking-tight text-white transition hover:text-accent"
         >
-          GeoGuess Showcase
+          GeoFinder Showcase
         </Link>
         <div className="hidden items-center gap-8 md:flex">
-          {links.map(link => (
+          {links.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
@@ -32,8 +32,8 @@ function Navbar() {
               className={({ isActive }) =>
                 `text-sm font-medium transition ${
                   isActive
-                    ? 'text-accent'
-                    : 'text-textSecondary hover:text-accent'
+                    ? "text-accent"
+                    : "text-textSecondary hover:text-accent"
                 }`
               }
             >
@@ -53,7 +53,7 @@ function Navbar() {
       {open && (
         <div className="border-t border-white/10 bg-background/95 px-6 pb-6 pt-4 shadow-xl sm:px-10 lg:px-16 md:hidden">
           <div className="flex flex-col gap-3">
-            {links.map(link => (
+            {links.map((link) => (
               <NavLink
                 key={link.to}
                 to={link.to}
@@ -61,8 +61,8 @@ function Navbar() {
                 className={({ isActive }) =>
                   `rounded-2xl border border-white/5 px-4 py-3 text-sm font-medium transition ${
                     isActive
-                      ? 'bg-accent/20 text-accent'
-                      : 'text-textSecondary hover:border-accent/40 hover:text-accent'
+                      ? "bg-accent/20 text-accent"
+                      : "text-textSecondary hover:border-accent/40 hover:text-accent"
                   }`
                 }
               >

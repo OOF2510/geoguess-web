@@ -1,14 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   getImageWithCountry,
   matchGuess,
   normalizeCountry,
-} from '../utils/geoApi.js';
-import {
-  startGameSession,
-  submitScore,
-} from '../utils/leaderboard.js';
+} from "../utils/geoApi.js";
+import { startGameSession, submitScore } from "../utils/leaderboard.js";
 
 const TOTAL_ROUNDS = 10;
 
@@ -17,12 +14,12 @@ function WebPlay() {
   const [image, setImage] = useState(null);
   const [country, setCountry] = useState(null);
   const [countryCode, setCountryCode] = useState(null);
-  const [displayName, setDisplayName] = useState('');
+  const [displayName, setDisplayName] = useState("");
   const [coord, setCoord] = useState(null);
-  const [guess, setGuess] = useState('');
+  const [guess, setGuess] = useState("");
   const [guessCount, setGuessCount] = useState(0);
   const [incorrectGuesses, setIncorrectGuesses] = useState([]);
-  const [feedback, setFeedback] = useState('');
+  const [feedback, setFeedback] = useState("");
   const [gameOver, setGameOver] = useState(false);
   const [currentScore, setCurrentScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
@@ -30,7 +27,7 @@ function WebPlay() {
   const [roundsPlayed, setRoundsPlayed] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [showSummary, setShowSummary] = useState(false);
-  const [summaryError, setSummaryError] = useState('');
+  const [summaryError, setSummaryError] = useState("");
   const [gameSessionId, setGameSessionId] = useState(null);
   const [offlineMode, setOfflineMode] = useState(false);
   const [submittingScore, setSubmittingScore] = useState(false);
@@ -44,7 +41,7 @@ function WebPlay() {
   const focusTimeoutRef = useRef(null);
 
   const queueInputFocus = (delay = 0) => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
     if (focusTimeoutRef.current) {
       clearTimeout(focusTimeoutRef.current);
     }
@@ -54,7 +51,7 @@ function WebPlay() {
   };
 
   useEffect(() => {
-    const storedHighScore = localStorage.getItem('geoguess-high-score');
+    const storedHighScore = localStorage.getItem("geofinder-high-score");
     if (storedHighScore) {
       const parsed = parseInt(storedHighScore, 10);
       if (!Number.isNaN(parsed)) {
@@ -78,14 +75,14 @@ function WebPlay() {
   useEffect(() => {
     if (!zoomOpen) return undefined;
 
-    const handleKeyDown = event => {
-      if (event.key === 'Escape') {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
         setZoomOpen(false);
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [zoomOpen]);
 
   useEffect(() => {
@@ -110,11 +107,11 @@ function WebPlay() {
         setPrefetchTimestamp(Date.now());
       }
     } catch (error) {
-      console.error('Prefetch failed', error);
+      console.error("Prefetch failed", error);
     }
   };
 
-  const hydrateRound = roundData => {
+  const hydrateRound = (roundData) => {
     setImage(roundData.image);
     setCoord(roundData.image?.coord ?? null);
     if (roundData.countryInfo) {
@@ -124,14 +121,14 @@ function WebPlay() {
     } else {
       setCountry(null);
       setCountryCode(null);
-      setDisplayName('Unknown');
+      setDisplayName("Unknown");
     }
   };
 
   const startGame = async () => {
     clearSummaryTimeout();
     setShowSummary(false);
-    setSummaryError('');
+    setSummaryError("");
     setZoomOpen(false);
 
     const hasPrefetched = Boolean(nextRound);
@@ -140,10 +137,10 @@ function WebPlay() {
     }
 
     setImage(null);
-    setGuess('');
+    setGuess("");
     setGuessCount(0);
     setIncorrectGuesses([]);
-    setFeedback('');
+    setFeedback("");
     setGameOver(false);
     setPrefetchTimestamp(null);
 
@@ -157,7 +154,7 @@ function WebPlay() {
       }
 
       if (!roundData) {
-        setFeedback('Could not fetch an image. Try again.');
+        setFeedback("Could not fetch an image. Try again.");
         return;
       }
 
@@ -165,8 +162,8 @@ function WebPlay() {
       prefetchNextRound();
       queueInputFocus(120);
     } catch (error) {
-      console.error('Failed to start round', error);
-      setFeedback('Failed to start round. Try again.');
+      console.error("Failed to start round", error);
+      setFeedback("Failed to start round. Try again.");
     } finally {
       setLoading(false);
     }
@@ -192,7 +189,7 @@ function WebPlay() {
       setCurrentScore(0);
       await startGame();
     } catch (error) {
-      console.error('Error starting game session:', error);
+      console.error("Error starting game session:", error);
       setGameSessionId(null);
       setOfflineMode(true);
       setNextRound(null);
@@ -208,7 +205,7 @@ function WebPlay() {
     }
   };
 
-  const handleSubmitGuess = event => {
+  const handleSubmitGuess = (event) => {
     if (event) {
       event.preventDefault();
     }
@@ -224,7 +221,7 @@ function WebPlay() {
     if (isCorrect) {
       setFeedback(`✅ Correct! It was ${displayName}.`);
       setGameOver(true);
-      setCorrectAnswers(prev => prev + 1);
+      setCorrectAnswers((prev) => prev + 1);
 
       let pointsEarned = 0;
       if (newGuessCount === 1) {
@@ -239,7 +236,7 @@ function WebPlay() {
       setCurrentScore(newScore);
       if (newScore > highScore) {
         setHighScore(newScore);
-        localStorage.setItem('geoguess-high-score', `${newScore}`);
+        localStorage.setItem("geofinder-high-score", `${newScore}`);
       }
     } else {
       const updatedIncorrect = [...incorrectGuesses, guessText];
@@ -247,7 +244,7 @@ function WebPlay() {
       if (newGuessCount >= 3) {
         const coordText = coord
           ? ` (${coord.lat.toFixed(4)}, ${coord.lon.toFixed(4)})`
-          : '';
+          : "";
         setFeedback(`❌ Game over! It was ${displayName}${coordText}.`);
         setGameOver(true);
       } else {
@@ -255,21 +252,21 @@ function WebPlay() {
       }
     }
 
-    setGuess('');
+    setGuess("");
 
     if (!(isCorrect || newGuessCount >= 3)) {
       queueInputFocus(0);
     }
 
     if (isCorrect || newGuessCount >= 3) {
-      setRoundsPlayed(prev => Math.min(prev + 1, TOTAL_ROUNDS));
+      setRoundsPlayed((prev) => Math.min(prev + 1, TOTAL_ROUNDS));
       if (roundNumber >= TOTAL_ROUNDS) {
         clearSummaryTimeout();
         summaryTimeoutRef.current = setTimeout(() => {
           setShowSummary(true);
         }, 2400);
       } else {
-        setRoundNumber(prev => Math.min(prev + 1, TOTAL_ROUNDS));
+        setRoundNumber((prev) => Math.min(prev + 1, TOTAL_ROUNDS));
       }
     }
   };
@@ -277,7 +274,7 @@ function WebPlay() {
   const continueGame = () => {
     clearSummaryTimeout();
     setShowSummary(false);
-    setSummaryError('');
+    setSummaryError("");
     setRoundNumber(1);
     setRoundsPlayed(0);
     setCorrectAnswers(0);
@@ -289,7 +286,7 @@ function WebPlay() {
   const startFreshGame = () => {
     clearSummaryTimeout();
     setShowSummary(false);
-    setSummaryError('');
+    setSummaryError("");
     setRoundNumber(1);
     setRoundsPlayed(0);
     setCorrectAnswers(0);
@@ -308,7 +305,7 @@ function WebPlay() {
     }
 
     setSubmittingScore(true);
-    setSummaryError('');
+    setSummaryError("");
     try {
       await submitScore(gameSessionId, currentScore, {
         correctAnswers,
@@ -322,8 +319,8 @@ function WebPlay() {
       setCurrentScore(0);
       initializeGameSession();
     } catch (error) {
-      console.error('Score submission failed:', error);
-      setSummaryError('Could not submit score. Please try again.');
+      console.error("Score submission failed:", error);
+      setSummaryError("Could not submit score. Please try again.");
     } finally {
       setSubmittingScore(false);
     }
@@ -344,14 +341,16 @@ function WebPlay() {
   return (
     <section className="flex flex-col gap-10">
       <div className="flex flex-col gap-4">
-        <p className="text-sm uppercase tracking-[0.4em] text-accent">Web Alpha</p>
+        <p className="text-sm uppercase tracking-[0.4em] text-accent">
+          Web Alpha
+        </p>
         <h1 className="text-4xl font-semibold text-white sm:text-5xl">
-          Play GeoGuess Online!
+          Play GeoFinder Online!
         </h1>
         <p className="max-w-3xl text-base leading-relaxed text-textSecondary">
-          This web version mirrors the Android experience: ten rapid-fire rounds,
-          three guesses per image, and leaderboard-ready scoring powered by
-          the same GeoGuess API.
+          This web version mirrors the Android experience: ten rapid-fire
+          rounds, three guesses per image, and leaderboard-ready scoring powered
+          by the same GeoGuess API.
         </p>
       </div>
 
@@ -359,9 +358,11 @@ function WebPlay() {
         <div className="flex flex-col gap-6">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <p className="text-sm font-medium text-textSecondary">{roundLabel}</p>
+              <p className="text-sm font-medium text-textSecondary">
+                {roundLabel}
+              </p>
               <p className="text-2xl font-semibold text-white">
-                Score {currentScore}{' '}
+                Score {currentScore}{" "}
                 <span className="text-sm font-normal text-textSecondary">
                   (High {highScore})
                 </span>
@@ -387,12 +388,12 @@ function WebPlay() {
                   <motion.img
                     key={image.url}
                     src={image.url}
-                    alt="GeoGuess round"
+                    alt="GeoFinder round"
                     className="h-full w-full cursor-zoom-in object-cover"
                     initial={{ opacity: 0.2, scale: 1.02 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.98 }}
-                    transition={{ duration: 0.6, ease: 'easeInOut' }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
                     onClick={() => setZoomOpen(true)}
                   />
                 ) : (
@@ -403,7 +404,7 @@ function WebPlay() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                   >
-                    {loading ? 'Fetching Image…' : 'Ready when you are'}
+                    {loading ? "Fetching Image…" : "Ready when you are"}
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -415,14 +416,17 @@ function WebPlay() {
 
           {image && !gameOver && (
             <form className="flex flex-col gap-4" onSubmit={handleSubmitGuess}>
-              <label className="text-sm font-medium text-textSecondary" htmlFor="guess-input">
+              <label
+                className="text-sm font-medium text-textSecondary"
+                htmlFor="guess-input"
+              >
                 Guess the country! (Guess {guessCount + 1}/3)
               </label>
               <input
                 id="guess-input"
                 ref={inputRef}
                 value={guess}
-                onChange={event => setGuess(event.target.value)}
+                onChange={(event) => setGuess(event.target.value)}
                 placeholder="Type a country name"
                 autoComplete="off"
                 className="w-full rounded-2xl border border-white/10 bg-background/60 px-4 py-3 text-base text-white placeholder:text-textSecondary/60 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
@@ -449,9 +453,9 @@ function WebPlay() {
                 role="status"
                 aria-live="polite"
                 className={`rounded-2xl border px-4 py-3 text-sm ${
-                  feedback.startsWith('✅')
-                    ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-100'
-                    : 'border-red-500/40 bg-red-500/10 text-red-100'
+                  feedback.startsWith("✅")
+                    ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-100"
+                    : "border-red-500/40 bg-red-500/10 text-red-100"
                 }`}
               >
                 {feedback}
@@ -497,7 +501,9 @@ function WebPlay() {
 
         <aside className="flex h-full flex-col justify-between gap-6 rounded-2xl border border-white/5 bg-background/40 p-6">
           <div className="space-y-3 text-sm text-textSecondary">
-            <h2 className="text-lg font-semibold text-white">How scoring works</h2>
+            <h2 className="text-lg font-semibold text-white">
+              How scoring works
+            </h2>
             <ul className="space-y-2">
               <li>First guess correct · +3 points</li>
               <li>Second guess correct · +2 points</li>
@@ -505,39 +511,59 @@ function WebPlay() {
               <li>Miss all three · 0 points and round ends</li>
             </ul>
             <p className="pt-2 text-xs text-textSecondary/80">
-              Leaderboard submissions are available whenever a Firebase App Check
-              session is active. Offline mode keeps the loop playable even
+              Leaderboard submissions are available whenever a Firebase App
+              Check session is active. Offline mode keeps the loop playable even
               without credentials.
             </p>
           </div>
           <div className="rounded-2xl border border-white/10 bg-surface/90 p-5">
-            <h3 className="text-base font-semibold text-white">Session stats</h3>
+            <h3 className="text-base font-semibold text-white">
+              Session stats
+            </h3>
             <dl className="mt-3 grid grid-cols-2 gap-3 text-sm text-textSecondary">
               <div>
                 <dt className="text-xs uppercase tracking-[0.25em]">Correct</dt>
-                <dd className="text-lg font-semibold text-white">{correctAnswers}</dd>
-              </div>
-              <div>
-                <dt className="text-xs uppercase tracking-[0.25em]">Played</dt>
-                <dd className="text-lg font-semibold text-white">{completedRounds}</dd>
-              </div>
-              <div>
-                <dt className="text-xs uppercase tracking-[0.25em]">Session ID</dt>
-                <dd className="truncate text-xs text-textSecondary/70">
-                  {gameSessionId ? gameSessionId.slice(0, 16) + '…' : 'Offline'}
+                <dd className="text-lg font-semibold text-white">
+                  {correctAnswers}
                 </dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-[0.25em]">Prefetched</dt>
-                <dd className="text-lg font-semibold text-white">{nextRound ? '1' : '0'}</dd>
+                <dt className="text-xs uppercase tracking-[0.25em]">Played</dt>
+                <dd className="text-lg font-semibold text-white">
+                  {completedRounds}
+                </dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-[0.25em]">Accuracy</dt>
-                <dd className="text-lg font-semibold text-white">{accuracy}%</dd>
+                <dt className="text-xs uppercase tracking-[0.25em]">
+                  Session ID
+                </dt>
+                <dd className="truncate text-xs text-textSecondary/70">
+                  {gameSessionId ? gameSessionId.slice(0, 16) + "…" : "Offline"}
+                </dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-[0.25em]">Progress</dt>
-                <dd className="text-lg font-semibold text-white">{Math.round(progress * 100)}%</dd>
+                <dt className="text-xs uppercase tracking-[0.25em]">
+                  Prefetched
+                </dt>
+                <dd className="text-lg font-semibold text-white">
+                  {nextRound ? "1" : "0"}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-xs uppercase tracking-[0.25em]">
+                  Accuracy
+                </dt>
+                <dd className="text-lg font-semibold text-white">
+                  {accuracy}%
+                </dd>
+              </div>
+              <div>
+                <dt className="text-xs uppercase tracking-[0.25em]">
+                  Progress
+                </dt>
+                <dd className="text-lg font-semibold text-white">
+                  {Math.round(progress * 100)}%
+                </dd>
               </div>
             </dl>
             <button
@@ -549,15 +575,21 @@ function WebPlay() {
             </button>
           </div>
           <div className="rounded-2xl border border-white/10 bg-background/60 p-4 text-xs text-textSecondary/80">
-            <p className="text-sm font-semibold text-textPrimary">Round pipeline</p>
+            <p className="text-sm font-semibold text-textPrimary">
+              Round pipeline
+            </p>
             <p className="mt-2">
               {nextRound
-                ? 'Next image preloaded for a snappy round transition.'
-                : 'Prefetching the next image in the background…'}
+                ? "Next image preloaded for a snappy round transition."
+                : "Prefetching the next image in the background…"}
             </p>
             {prefetchTimestamp && (
               <p className="mt-2 text-[0.7rem] uppercase tracking-[0.25em] text-textSecondary/60">
-                Cached at {new Date(prefetchTimestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                Cached at{" "}
+                {new Date(prefetchTimestamp).toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
               </p>
             )}
           </div>
@@ -590,13 +622,13 @@ function WebPlay() {
           >
             <motion.img
               src={image.url}
-              alt="Expanded GeoGuess round"
+              alt="Expanded GeoFinder round"
               className="max-h-[90vh] w-full max-w-5xl rounded-2xl border border-white/10 object-contain"
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ duration: 0.25 }}
-              onClick={event => event.stopPropagation()}
+              onClick={(event) => event.stopPropagation()}
             />
           </motion.div>
         )}
@@ -616,7 +648,9 @@ function WebPlay() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.94, opacity: 0 }}
             >
-              <h2 className="text-2xl font-semibold text-white">Game complete!</h2>
+              <h2 className="text-2xl font-semibold text-white">
+                Game complete!
+              </h2>
               <p className="mt-2 text-sm text-textSecondary">
                 You nailed {correctAnswers} out of {TOTAL_ROUNDS} rounds for a
                 final score of {currentScore}.
@@ -650,7 +684,7 @@ function WebPlay() {
                   disabled={submittingScore}
                   className="rounded-2xl border border-accent/50 bg-accent/20 px-4 py-3 text-sm font-semibold text-accent transition hover:bg-accent/30 disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                  {submittingScore ? 'Submitting…' : 'Submit score'}
+                  {submittingScore ? "Submitting…" : "Submit score"}
                 </button>
               </div>
             </motion.div>
