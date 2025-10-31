@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   FaAndroid,
+  FaApple,
   FaArrowUpRightFromSquare,
+  FaDesktop,
   FaGithub,
   FaMap,
 } from "react-icons/fa6";
@@ -138,24 +140,39 @@ function GeoGuess() {
               </a>{" "}
               for data-rich street view moments.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <button
-                onClick={handleDownloadAPK}
-                type="button"
-                className="group flex items-center gap-3 rounded-2xl border border-accent/60 bg-accent/20 px-6 py-3 font-medium text-accent transition hover:bg-accent/30 cursor-pointer"
-              >
-                <FaAndroid />
-                Download Latest APK
-              </button>
-              <a
-                href="https://github.com/oof2510/geoguessapp"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-3 rounded-2xl border border-white/10 px-6 py-3 font-medium text-textSecondary transition hover:border-accent/50 hover:text-accent"
-              >
-                <FaGithub />
-                View source
-              </a>
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-wrap gap-4">
+                <button
+                  onClick={handleDownloadAPK}
+                  type="button"
+                  className="group flex items-center gap-3 rounded-2xl border border-accent/60 bg-accent/20 px-6 py-3 font-medium text-accent transition hover:bg-accent/30 cursor-pointer"
+                >
+                  <FaAndroid />
+                  Download Latest APK
+                </button>
+                <a
+                  href="https://github.com/oof2510/geoguessapp"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-3 rounded-2xl border border-white/10 px-6 py-3 font-medium text-textSecondary transition hover:border-accent/50 hover:text-accent"
+                >
+                  <FaGithub />
+                  View source
+                </a>
+              </div>
+              <div className="flex flex-col gap-3">
+                <p className="text-sm text-textSecondary flex items-center gap-2 flex-wrap">
+                  On <FaApple className="inline text-white" /> iOS or{" "}
+                  <FaDesktop className="inline text-white" /> desktop, or just
+                  wanna try it out before you download?
+                </p>
+                <a
+                  href="/play"
+                  className="flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-6 py-3 font-medium text-textSecondary transition hover:border-accent/50 hover:bg-white/10 hover:text-accent"
+                >
+                  Play in Browser
+                </a>
+              </div>
             </div>
           </div>
           <motion.div
