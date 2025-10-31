@@ -86,6 +86,25 @@ function GeoGuess() {
     return () => clearInterval(interval);
   }, []);
 
+  const handleDownloadAPK = async () => {
+    try {
+      const response = await fetch(
+        "https://api.github.com/repos/oof2510/geoguessapp/releases/latest",
+      );
+      const data = await response.json();
+      const apkAsset = data.assets.find((asset) => asset.name.endsWith(".apk"));
+      if (apkAsset) {
+        window.open(apkAsset.browser_download_url, "_blank");
+      }
+    } catch (error) {
+      // Fallback to releases page if API fails
+      window.open(
+        "https://github.com/oof2510/geoguessapp/releases/latest",
+        "_blank",
+      );
+    }
+  };
+
   return (
     <div className="flex flex-col gap-24">
       <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-accentMuted/30 via-surface/80 to-background p-10 shadow-glow">
@@ -113,18 +132,16 @@ function GeoGuess() {
               for data-rich street view moments.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a
-                href="https://github.com/OOF2510/GeoguessApp/releases/latest"
-                target="_blank"
-                rel="noreferrer"
-                className="group flex items-center gap-3 rounded-2xl border border-accent/60 bg-accent/20 px-6 py-3 font-medium text-accent transition hover:bg-accent/30"
+              <button
+                onClick={handleDownloadAPK}
+                type="button"
+                className="group flex items-center gap-3 rounded-2xl border border-accent/60 bg-accent/20 px-6 py-3 font-medium text-accent transition hover:bg-accent/30 cursor-pointer"
               >
                 <FaAndroid />
-                Download APK
-                <FaArrowUpRightFromSquare className="text-xs transition group-hover:translate-x-1" />
-              </a>
+                Download Latest APK
+              </button>
               <a
-                href="https://github.com/OOF2510/GeoguessApp"
+                href="https://github.com/oof2510/geoguessapp"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-3 rounded-2xl border border-white/10 px-6 py-3 font-medium text-textSecondary transition hover:border-accent/50 hover:text-accent"
