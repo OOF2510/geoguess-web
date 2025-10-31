@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { FaTrophy } from "react-icons/fa6";
 import {
   getImageWithCountry,
   matchGuess,
@@ -34,6 +35,10 @@ function WebPlay() {
   const [nextRound, setNextRound] = useState(null);
   const [prefetchTimestamp, setPrefetchTimestamp] = useState(null);
   const [zoomOpen, setZoomOpen] = useState(false);
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const [leaderboardData, setLeaderboardData] = useState([]);
+  const [leaderboardLoading, setLeaderboardLoading] = useState(false);
+  const [leaderboardError, setLeaderboardError] = useState("");
 
   const prefetchRequestId = useRef(0);
   const summaryTimeoutRef = useRef(null);
@@ -326,6 +331,27 @@ function WebPlay() {
     }
   };
 
+  const fetchLeaderboard = async () => {
+    setLeaderboardLoading(true);
+    setLeaderboardError("");
+    try {
+      const response = await fetch(
+        "https://api.geo.oof2510.space/leaderboard/top",
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch leaderboard");
+      }
+      const data = await response.json();
+      setLeaderboardData(data);
+      setShowLeaderboard(true);
+    } catch (error) {
+      console.error("Error fetching leaderboard:", error);
+      setLeaderboardError("Could not load leaderboard. Please try again.");
+    } finally {
+      setLeaderboardLoading(false);
+    }
+  };
+
   const completedRounds = Math.min(roundsPlayed, TOTAL_ROUNDS);
   const progress = completedRounds / TOTAL_ROUNDS;
   const accuracy = completedRounds
@@ -503,6 +529,15 @@ function WebPlay() {
         </div>
 
         <aside className="flex h-full flex-col justify-between gap-5 sm:gap-6 rounded-2xl border border-white/5 bg-background/40 p-5 sm:p-6">
+          <button
+            type="button"
+            onClick={fetchLeaderboard}
+            disabled={leaderboardLoading}
+            className="flex items-center justify-center gap-2 rounded-2xl border border-accent/40 bg-accent/20 px-4 py-3 text-sm font-semibold text-accent transition hover:bg-accent/30 disabled:cursor-not-allowed disabled:opacity-70 touch-manipulation"
+          >
+            <FaTrophy />
+            {leaderboardLoading ? "Loading..." : "View Leaderboard"}
+          </button>
           <div className="space-y-2 sm:space-y-3 text-sm text-textSecondary">
             <h2 className="text-base sm:text-lg font-semibold text-white">
               How scoring works
@@ -688,6 +723,86 @@ function WebPlay() {
                   className="rounded-2xl border border-accent/50 bg-accent/20 px-4 py-3 text-sm font-semibold text-accent transition hover:bg-accent/30 disabled:cursor-not-allowed disabled:opacity-70 touch-manipulation"
                 >
                   {submittingScore ? "Submitting…" : "Submit score"}
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showLeaderboard && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 sm:px-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowLeaderboard(false)}
+          >
+            <motion.div
+              className="w-full max-w-lg rounded-3xl border border-white/10 bg-surface/95 p-6 sm:p-8 shadow-glow"
+              initial={{ scale: 0.94, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.94, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="text-center mb-6">
+                <h2 className="text-2xl sm:text-3xl font-bold text-accent">
+                  Leaderboard
+                </h2>
+              </div>
+
+              {leaderboardLoading ? (
+                <div className="text-center py-10">
+                  <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-accent border-r-transparent mb-3"></div>
+                  <p className="text-textSecondary">Loading scores...</p>
+                </div>
+              ) : leaderboardError ? (
+                <div className="text-center py-10">
+                  <p className="text-white text-lg mb-2">
+                    Failed to load leaderboard
+                  </p>
+                  <p className="text-textSecondary text-sm">
+                    {leaderboardError}
+                  </p>
+                </div>
+              ) : leaderboardData.length === 0 ? (
+                <div className="text-center py-10">
+                  <p className="text-white text-lg mb-2">
+                    No scores available yet.
+                  </p>
+                  <p className="text-textSecondary text-sm">
+                    Be the first to play and set a high score!
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-2 max-h-96 overflow-y-auto">
+                  {leaderboardData.map((entry, index) => (
+                    <div
+                      key={`${entry.rank}-${index}`}
+                      className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3"
+                    >
+                      <span className="text-base font-bold text-emerald-400 min-w-[50px]">
+                        #{entry.rank}
+                      </span>
+                      <span className="text-base font-bold text-white flex-1 text-center">
+                        {entry.score} pts
+                      </span>
+                      <span className="text-xs text-textSecondary min-w-[80px] text-right">
+                        {new Date(entry.createdAt).toLocaleDateString()}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div className="mt-6 flex justify-center">
+                <button
+                  type="button"
+                  onClick={() => setShowLeaderboard(false)}
+                  className="w-3/5 rounded-2xl border border-red-500/50 bg-red-500/20 px-4 py-3 text-base font-semibold text-red-200 transition hover:bg-red-500/30 touch-manipulation"
+                >
+                  Close
                 </button>
               </div>
             </motion.div>
