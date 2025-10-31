@@ -21,7 +21,7 @@ function Navbar() {
           onClick={close}
           className="text-lg font-semibold tracking-tight text-white transition hover:text-accent"
         >
-          GeoFinder Showcase
+          GeoFinder
         </Link>
         <div className="hidden items-center gap-8 md:flex">
           {links.map((link) => (
