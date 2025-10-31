@@ -120,43 +120,43 @@ function GeoGuess() {
       <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-accentMuted/30 via-surface/80 to-background p-6 sm:p-8 md:p-10 shadow-glow">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_70%_10%,rgba(56,139,253,0.25),transparent_55%)]" />
         <div className="flex flex-col gap-8 lg:flex-row lg:items-center">
-          <motion.div
-            className="w-full rounded-3xl border border-white/10 bg-white/5 p-3 shadow-inner lg:order-2 lg:flex-1 max-w-sm mx-auto lg:max-w-none lg:mx-0"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="relative w-full overflow-hidden rounded-2xl pt-[160%]">
-              <AnimatePresence initial={false} mode="wait">
-                <motion.img
-                  key={screenshots[activeScreenshot]}
-                  src={screenshots[activeScreenshot]}
-                  alt="GeoFinder gameplay"
-                  className="absolute inset-0 h-full w-full object-cover"
-                  initial={{ opacity: 0.1, scale: 1.02 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.98 }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
-                />
-              </AnimatePresence>
-              <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
-                {screenshots.map((_, index) => (
-                  <button
-                    type="button"
-                    key={screenshots[index]}
-                    onClick={() => setActiveScreenshot(index)}
-                    className={`h-2 w-2 rounded-full transition ${index === activeScreenshot ? "bg-accent shadow-[0_0_12px_rgba(56,139,253,0.7)]" : "bg-white/30 hover:bg-white/60"}`}
-                    aria-label={`Show screenshot ${index + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-          </motion.div>
           <div className="flex-1 space-y-6 lg:order-1">
             <p className="text-sm uppercase tracking-[0.45em] text-accent">
               GeoFinder
             </p>
+            <motion.div
+              className="w-full rounded-3xl border border-white/10 bg-white/5 p-3 shadow-inner lg:hidden max-w-sm mx-auto"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="relative w-full overflow-hidden rounded-2xl pt-[160%]">
+                <AnimatePresence initial={false} mode="wait">
+                  <motion.img
+                    key={screenshots[activeScreenshot]}
+                    src={screenshots[activeScreenshot]}
+                    alt="GeoFinder gameplay"
+                    className="absolute inset-0 h-full w-full object-cover"
+                    initial={{ opacity: 0.1, scale: 1.02 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                  />
+                </AnimatePresence>
+                <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
+                  {screenshots.map((_, index) => (
+                    <button
+                      type="button"
+                      key={screenshots[index]}
+                      onClick={() => setActiveScreenshot(index)}
+                      className={`h-2 w-2 rounded-full transition ${index === activeScreenshot ? "bg-accent shadow-[0_0_12px_rgba(56,139,253,0.7)]" : "bg-white/30 hover:bg-white/60"}`}
+                      aria-label={`Show screenshot ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </motion.div>
             <h1 className="text-3xl font-semibold text-white sm:text-4xl md:text-5xl">
               Guess the world. Flex the brain.
             </h1>
@@ -211,6 +211,39 @@ function GeoGuess() {
               </div>
             </div>
           </div>
+          <motion.div
+            className="hidden lg:block flex-1 rounded-3xl border border-white/10 bg-white/5 p-3 shadow-inner lg:order-2"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="relative w-full overflow-hidden rounded-2xl pt-[160%]">
+              <AnimatePresence initial={false} mode="wait">
+                <motion.img
+                  key={screenshots[activeScreenshot]}
+                  src={screenshots[activeScreenshot]}
+                  alt="GeoFinder gameplay"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  initial={{ opacity: 0.1, scale: 1.02 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                />
+              </AnimatePresence>
+              <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
+                {screenshots.map((_, index) => (
+                  <button
+                    type="button"
+                    key={screenshots[index]}
+                    onClick={() => setActiveScreenshot(index)}
+                    className={`h-2 w-2 rounded-full transition ${index === activeScreenshot ? "bg-accent shadow-[0_0_12px_rgba(56,139,253,0.7)]" : "bg-white/30 hover:bg-white/60"}`}
+                    aria-label={`Show screenshot ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
