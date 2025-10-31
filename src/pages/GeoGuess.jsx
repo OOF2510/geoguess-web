@@ -121,7 +121,7 @@ function GeoGuess() {
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_70%_10%,rgba(56,139,253,0.25),transparent_55%)]" />
         <div className="flex flex-col gap-8 lg:flex-row lg:items-center">
           <motion.div
-            className="flex-1 rounded-3xl border border-white/10 bg-white/5 p-3 shadow-inner lg:order-2 max-w-md mx-auto lg:max-w-none lg:mx-0"
+            className="w-full rounded-3xl border border-white/10 bg-white/5 p-3 shadow-inner lg:order-2 lg:flex-1 max-w-sm mx-auto lg:max-w-none lg:mx-0"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -161,9 +161,9 @@ function GeoGuess() {
               Guess the world. Flex the brain.
             </h1>
             <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-textSecondary">
-              GeoFinder, a mobile and web geography guessing adventure that blends
-              fun, engaging gameplay with global imagery.
-              Built with React Native and powered by my{" "}
+              GeoFinder, a mobile and web geography guessing adventure that
+              blends fun, engaging gameplay with global imagery. Built with
+              React Native and powered by my{" "}
               <a
                 className="text-accent underline decoration-accent/40 underline-offset-4"
                 href="https://github.com/oof2510/geoguess-api"
@@ -172,7 +172,8 @@ function GeoGuess() {
               >
                 GeoGuess API
               </a>{" "}
-              to provide diverse street view images from around the world via Mapillary.
+              to provide diverse street view images from around the world via
+              Mapillary.
             </p>
             <div className="flex flex-col gap-4">
               <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
@@ -195,7 +196,7 @@ function GeoGuess() {
                 </a>
               </div>
               <div className="flex flex-col gap-3">
-                <p className="text-sm text-textSecondary flex items-center gap-2 flex-wrap">
+                <p className="text-xs sm:text-sm text-textSecondary flex items-center gap-2 flex-wrap">
                   On <FaApple className="inline text-white" /> or{" "}
                   <FaDesktop className="inline text-white" />
                   ?, or just wanna try it out before you download?
