@@ -162,7 +162,7 @@ function GeoGuess() {
             </h1>
             <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-textSecondary">
               The GeoFinder app, a mobile geoguessing adventure that blends
-              lightning-fast gameplay with carefully curated global imagery.
+              fun, engaging gameplay with global imagery.
               Built with React Native and powered by my{" "}
               <a
                 className="text-accent underline decoration-accent/40 underline-offset-4"
