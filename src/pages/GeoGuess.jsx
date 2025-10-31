@@ -172,7 +172,7 @@ function GeoGuess() {
               >
                 GeoGuess API
               </a>{" "}
-              for data-rich street view moments.
+              to provide diverse street view images from around the world via Mapillary.
             </p>
             <div className="flex flex-col gap-4">
               <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
