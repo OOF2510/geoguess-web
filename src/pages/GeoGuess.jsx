@@ -101,7 +101,7 @@ function GeoGuess() {
       const apkAsset = data.assets.find((asset) => asset.name.endsWith(".apk"));
       if (apkAsset) {
         // Start the download
-        window.open(apkAsset.browser_download_url, "_blank");
+        window.open(apkAsset.browser_download_url);
         // Store release data and show modal
         setReleaseData(data);
         setIsModalOpen(true);
