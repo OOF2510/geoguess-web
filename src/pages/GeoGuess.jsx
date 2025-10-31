@@ -195,8 +195,8 @@ function GeoGuess() {
               </div>
               <div className="flex flex-col gap-3">
                 <p className="text-sm text-textSecondary flex items-center gap-2 flex-wrap">
-                  On <FaApple className="inline text-white" /> iOS or{" "}
-                  <FaDesktop className="inline text-white" /> desktop, or just
+                  On <FaApple className="inline text-white" /> or{" "}
+                  <FaDesktop className="inline text-white" />?, or just
                   wanna try it out before you download?
                 </p>
                 <a
