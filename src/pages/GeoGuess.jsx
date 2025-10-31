@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa6";
 import { PiRankingFill } from "react-icons/pi";
 import SectionHeading from "../components/SectionHeading.jsx";
+import ReleaseNotesModal from "../components/ReleaseNotesModal.jsx";
 
 const features = [
   {
@@ -77,6 +78,8 @@ const screenshots = [
 
 function GeoGuess() {
   const [activeScreenshot, setActiveScreenshot] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [releaseData, setReleaseData] = useState(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -94,7 +97,11 @@ function GeoGuess() {
       const data = await response.json();
       const apkAsset = data.assets.find((asset) => asset.name.endsWith(".apk"));
       if (apkAsset) {
+        // Start the download
         window.open(apkAsset.browser_download_url, "_blank");
+        // Store release data and show modal
+        setReleaseData(data);
+        setIsModalOpen(true);
       }
     } catch (error) {
       // Fallback to releases page if API fails
@@ -343,6 +350,12 @@ function GeoGuess() {
           ))}
         </div>
       </section>
+
+      <ReleaseNotesModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        releaseData={releaseData}
+      />
     </div>
   );
 }
