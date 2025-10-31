@@ -155,13 +155,13 @@ function GeoGuess() {
           </motion.div>
           <div className="flex-1 space-y-6 lg:order-1">
             <p className="text-sm uppercase tracking-[0.45em] text-accent">
-              GeoFinder App
+              GeoFinder
             </p>
             <h1 className="text-3xl font-semibold text-white sm:text-4xl md:text-5xl">
               Guess the world. Flex the brain.
             </h1>
             <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-textSecondary">
-              The GeoFinder app, a mobile geoguessing adventure that blends
+              GeoFinder, a mobile and web geography guessing adventure that blends
               fun, engaging gameplay with global imagery.
               Built with React Native and powered by my{" "}
               <a
