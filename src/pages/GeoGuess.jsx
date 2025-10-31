@@ -69,7 +69,7 @@ const techStack = {
 const roadmapItems = [
   "Play store release",
   "API improvements",
-  "Web build leveraging the same API",
+  "1v1 multiplayer",
 ];
 
 const screenshots = [
