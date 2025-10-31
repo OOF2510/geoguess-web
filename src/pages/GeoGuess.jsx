@@ -196,10 +196,9 @@ function GeoGuess() {
                 </a>
               </div>
               <div className="flex flex-col gap-3">
-                <p className="text-[0.7rem] sm:text-sm text-textSecondary flex items-center gap-1 flex-wrap leading-tight">
+                <p className="text-[0.7rem] sm:text-sm text-textSecondary flex items-center justify-center gap-1 flex-wrap leading-tight">
                   On <FaApple className="inline text-white text-xs" /> or{" "}
-                  <FaDesktop className="inline text-white text-xs" />? Try it
-                  here on the site!
+                  <FaDesktop className="inline text-white text-xs" />? Try the web version!
                 </p>
                 <a
                   href="/play"
