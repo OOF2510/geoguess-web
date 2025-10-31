@@ -339,31 +339,31 @@ function WebPlay() {
   const guessReady = Boolean(guess.trim());
 
   return (
-    <section className="flex flex-col gap-10">
-      <div className="flex flex-col gap-4">
+    <section className="flex flex-col gap-6 sm:gap-8 md:gap-10">
+      <div className="flex flex-col gap-3 sm:gap-4">
         <p className="text-sm uppercase tracking-[0.4em] text-accent">
           Web Alpha
         </p>
-        <h1 className="text-4xl font-semibold text-white sm:text-5xl">
+        <h1 className="text-3xl font-semibold text-white sm:text-4xl md:text-5xl">
           Play GeoFinder Online!
         </h1>
-        <p className="max-w-3xl text-base leading-relaxed text-textSecondary">
+        <p className="max-w-3xl text-sm sm:text-base leading-relaxed text-textSecondary">
           This web version mirrors the Android experience: ten rapid-fire
           rounds, three guesses per image, and leaderboard-ready scoring powered
           by the same GeoGuess API.
         </p>
       </div>
 
-      <div className="relative grid gap-6 rounded-3xl border border-white/10 bg-surface/80 p-8 shadow-glow lg:grid-cols-[1.25fr_0.85fr]">
-        <div className="flex flex-col gap-6">
-          <div className="flex flex-wrap items-center justify-between gap-4">
+      <div className="relative grid gap-6 rounded-3xl border border-white/10 bg-surface/80 p-5 sm:p-6 md:p-8 shadow-glow lg:grid-cols-[1.25fr_0.85fr]">
+        <div className="flex flex-col gap-4 sm:gap-6">
+          <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4">
             <div>
-              <p className="text-sm font-medium text-textSecondary">
+              <p className="text-xs sm:text-sm font-medium text-textSecondary">
                 {roundLabel}
               </p>
-              <p className="text-2xl font-semibold text-white">
+              <p className="text-xl sm:text-2xl font-semibold text-white">
                 Score {currentScore}{" "}
-                <span className="text-sm font-normal text-textSecondary">
+                <span className="text-xs sm:text-sm font-normal text-textSecondary">
                   (High {highScore})
                 </span>
               </p>
@@ -382,7 +382,7 @@ function WebPlay() {
           </div>
 
           <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-background/40">
-            <div className="aspect-[16/9] w-full bg-black/40">
+            <div className="aspect-[4/3] sm:aspect-[16/9] w-full bg-black/40">
               <AnimatePresence mode="wait">
                 {image ? (
                   <motion.img
@@ -415,7 +415,10 @@ function WebPlay() {
           </div>
 
           {image && !gameOver && (
-            <form className="flex flex-col gap-4" onSubmit={handleSubmitGuess}>
+            <form
+              className="flex flex-col gap-3 sm:gap-4"
+              onSubmit={handleSubmitGuess}
+            >
               <label
                 className="text-sm font-medium text-textSecondary"
                 htmlFor="guess-input"
@@ -429,12 +432,12 @@ function WebPlay() {
                 onChange={(event) => setGuess(event.target.value)}
                 placeholder="Type a country name"
                 autoComplete="off"
-                className="w-full rounded-2xl border border-white/10 bg-background/60 px-4 py-3 text-base text-white placeholder:text-textSecondary/60 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+                className="w-full rounded-2xl border border-white/10 bg-background/60 px-4 py-3 text-base text-white placeholder:text-textSecondary/60 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30 touch-manipulation"
               />
               <div className="flex flex-wrap gap-3">
                 <button
                   type="submit"
-                  className="rounded-2xl border border-emerald-500/30 bg-[#046C4E] px-6 py-3 text-sm font-semibold text-white transition hover:border-emerald-400/50 hover:bg-[#05805b] focus:outline-none focus:ring-2 focus:ring-emerald-400/40 disabled:cursor-not-allowed disabled:opacity-70"
+                  className="rounded-2xl border border-emerald-500/30 bg-[#046C4E] px-6 py-3 text-sm font-semibold text-white transition hover:border-emerald-400/50 hover:bg-[#05805b] focus:outline-none focus:ring-2 focus:ring-emerald-400/40 disabled:cursor-not-allowed disabled:opacity-70 w-full sm:w-auto touch-manipulation"
                   disabled={loading || !guessReady}
                 >
                   Lock in guess
@@ -480,18 +483,18 @@ function WebPlay() {
           )}
 
           {gameOver && (
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3">
               <button
                 type="button"
                 onClick={startGame}
-                className="rounded-2xl border border-accent/40 bg-accent/20 px-6 py-3 text-sm font-semibold text-accent transition hover:bg-accent/30"
+                className="rounded-2xl border border-accent/40 bg-accent/20 px-6 py-3 text-sm font-semibold text-accent transition hover:bg-accent/30 w-full sm:w-auto touch-manipulation"
               >
                 Next round
               </button>
               <button
                 type="button"
                 onClick={initializeGameSession}
-                className="rounded-2xl border border-white/10 bg-surface px-6 py-3 text-sm font-medium text-textSecondary transition hover:border-accent/40 hover:text-accent"
+                className="rounded-2xl border border-white/10 bg-surface px-6 py-3 text-sm font-medium text-textSecondary transition hover:border-accent/40 hover:text-accent w-full sm:w-auto touch-manipulation"
               >
                 Restart session
               </button>
@@ -499,9 +502,9 @@ function WebPlay() {
           )}
         </div>
 
-        <aside className="flex h-full flex-col justify-between gap-6 rounded-2xl border border-white/5 bg-background/40 p-6">
-          <div className="space-y-3 text-sm text-textSecondary">
-            <h2 className="text-lg font-semibold text-white">
+        <aside className="flex h-full flex-col justify-between gap-5 sm:gap-6 rounded-2xl border border-white/5 bg-background/40 p-5 sm:p-6">
+          <div className="space-y-2 sm:space-y-3 text-sm text-textSecondary">
+            <h2 className="text-base sm:text-lg font-semibold text-white">
               How scoring works
             </h2>
             <ul className="space-y-2">
@@ -516,8 +519,8 @@ function WebPlay() {
               without credentials.
             </p>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-surface/90 p-5">
-            <h3 className="text-base font-semibold text-white">
+          <div className="rounded-2xl border border-white/10 bg-surface/90 p-4 sm:p-5">
+            <h3 className="text-sm sm:text-base font-semibold text-white">
               Session stats
             </h3>
             <dl className="mt-3 grid grid-cols-2 gap-3 text-sm text-textSecondary">
@@ -569,7 +572,7 @@ function WebPlay() {
             <button
               type="button"
               onClick={initializeGameSession}
-              className="mt-4 w-full rounded-2xl border border-white/10 bg-background/70 px-4 py-3 text-sm font-medium text-textSecondary transition hover:border-accent/40 hover:text-accent"
+              className="mt-4 w-full rounded-2xl border border-white/10 bg-background/70 px-4 py-3 text-sm font-medium text-textSecondary transition hover:border-accent/40 hover:text-accent touch-manipulation"
             >
               Hard reset session
             </button>
@@ -596,7 +599,7 @@ function WebPlay() {
         </aside>
       </div>
 
-      <div className="w-full rounded-3xl border border-white/10 bg-background/40 p-5">
+      <div className="w-full rounded-3xl border border-white/10 bg-background/40 p-4 sm:p-5">
         <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-textSecondary/70">
           <span>Session Progress</span>
           <span>
@@ -614,7 +617,7 @@ function WebPlay() {
       <AnimatePresence>
         {zoomOpen && image && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-6"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 sm:px-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -637,18 +640,18 @@ function WebPlay() {
       <AnimatePresence>
         {showSummary && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-6"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 sm:px-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="w-full max-w-xl rounded-3xl border border-white/10 bg-surface/95 p-8 text-center shadow-glow"
+              className="w-full max-w-xl rounded-3xl border border-white/10 bg-surface/95 p-6 sm:p-8 text-center shadow-glow"
               initial={{ scale: 0.94, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.94, opacity: 0 }}
             >
-              <h2 className="text-2xl font-semibold text-white">
+              <h2 className="text-xl sm:text-2xl font-semibold text-white">
                 Game complete!
               </h2>
               <p className="mt-2 text-sm text-textSecondary">
@@ -667,14 +670,14 @@ function WebPlay() {
                 <button
                   type="button"
                   onClick={continueGame}
-                  className="rounded-2xl border border-emerald-500/40 bg-emerald-500/15 px-4 py-3 text-sm font-semibold text-emerald-100 transition hover:bg-emerald-500/25"
+                  className="rounded-2xl border border-emerald-500/40 bg-emerald-500/15 px-4 py-3 text-sm font-semibold text-emerald-100 transition hover:bg-emerald-500/25 touch-manipulation"
                 >
                   Continue (10 more)
                 </button>
                 <button
                   type="button"
                   onClick={startFreshGame}
-                  className="rounded-2xl border border-white/10 bg-background/70 px-4 py-3 text-sm font-medium text-textSecondary transition hover:border-accent/40 hover:text-accent"
+                  className="rounded-2xl border border-white/10 bg-background/70 px-4 py-3 text-sm font-medium text-textSecondary transition hover:border-accent/40 hover:text-accent touch-manipulation"
                 >
                   Start fresh
                 </button>
@@ -682,7 +685,7 @@ function WebPlay() {
                   type="button"
                   onClick={handleSubmitScore}
                   disabled={submittingScore}
-                  className="rounded-2xl border border-accent/50 bg-accent/20 px-4 py-3 text-sm font-semibold text-accent transition hover:bg-accent/30 disabled:cursor-not-allowed disabled:opacity-70"
+                  className="rounded-2xl border border-accent/50 bg-accent/20 px-4 py-3 text-sm font-semibold text-accent transition hover:bg-accent/30 disabled:cursor-not-allowed disabled:opacity-70 touch-manipulation"
                 >
                   {submittingScore ? "Submitting…" : "Submit score"}
                 </button>

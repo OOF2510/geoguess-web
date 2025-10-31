@@ -115,68 +115,12 @@ function GeoGuess() {
   };
 
   return (
-    <div className="flex flex-col gap-24">
-      <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-accentMuted/30 via-surface/80 to-background p-10 shadow-glow">
+    <div className="flex flex-col gap-12 sm:gap-16 md:gap-24">
+      <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-accentMuted/30 via-surface/80 to-background p-6 sm:p-8 md:p-10 shadow-glow">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_70%_10%,rgba(56,139,253,0.25),transparent_55%)]" />
         <div className="flex flex-col gap-8 lg:flex-row lg:items-center">
-          <div className="flex-1 space-y-6">
-            <p className="text-sm uppercase tracking-[0.45em] text-accent">
-              GeoFinder App
-            </p>
-            <h1 className="text-4xl font-semibold text-white sm:text-5xl">
-              Find the planet. Flex the brain.
-            </h1>
-            <p className="max-w-2xl text-lg leading-relaxed text-textSecondary">
-              The GeoFinder app, a mobile geoguessing adventure that blends
-              lightning-fast gameplay with carefully curated global imagery.
-              Built with React Native and powered by my{" "}
-              <a
-                className="text-accent underline decoration-accent/40 underline-offset-4"
-                href="https://github.com/oof2510/geoguess-api"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GeoGuess API
-              </a>{" "}
-              for data-rich street view moments.
-            </p>
-            <div className="flex flex-col gap-4">
-              <div className="flex flex-wrap gap-4">
-                <button
-                  onClick={handleDownloadAPK}
-                  type="button"
-                  className="group flex items-center gap-3 rounded-2xl border border-accent/60 bg-accent/20 px-6 py-3 font-medium text-accent transition hover:bg-accent/30 cursor-pointer"
-                >
-                  <FaAndroid />
-                  Download Latest APK
-                </button>
-                <a
-                  href="https://github.com/oof2510/geoguessapp"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-3 rounded-2xl border border-white/10 px-6 py-3 font-medium text-textSecondary transition hover:border-accent/50 hover:text-accent"
-                >
-                  <FaGithub />
-                  View source
-                </a>
-              </div>
-              <div className="flex flex-col gap-3">
-                <p className="text-sm text-textSecondary flex items-center gap-2 flex-wrap">
-                  On <FaApple className="inline text-white" /> iOS or{" "}
-                  <FaDesktop className="inline text-white" /> desktop, or just
-                  wanna try it out before you download?
-                </p>
-                <a
-                  href="/play"
-                  className="flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-6 py-3 font-medium text-textSecondary transition hover:border-accent/50 hover:bg-white/10 hover:text-accent"
-                >
-                  Play in Browser
-                </a>
-              </div>
-            </div>
-          </div>
           <motion.div
-            className="flex-1 rounded-3xl border border-white/10 bg-white/5 p-3 shadow-inner"
+            className="flex-1 rounded-3xl border border-white/10 bg-white/5 p-3 shadow-inner lg:order-2 max-w-md mx-auto lg:max-w-none lg:mx-0"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -208,6 +152,62 @@ function GeoGuess() {
               </div>
             </div>
           </motion.div>
+          <div className="flex-1 space-y-6 lg:order-1">
+            <p className="text-sm uppercase tracking-[0.45em] text-accent">
+              GeoFinder App
+            </p>
+            <h1 className="text-3xl font-semibold text-white sm:text-4xl md:text-5xl">
+              Guess the world. Flex the brain.
+            </h1>
+            <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-textSecondary">
+              The GeoFinder app, a mobile geoguessing adventure that blends
+              lightning-fast gameplay with carefully curated global imagery.
+              Built with React Native and powered by my{" "}
+              <a
+                className="text-accent underline decoration-accent/40 underline-offset-4"
+                href="https://github.com/oof2510/geoguess-api"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GeoGuess API
+              </a>{" "}
+              for data-rich street view moments.
+            </p>
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+                <button
+                  onClick={handleDownloadAPK}
+                  type="button"
+                  className="group flex items-center justify-center gap-3 rounded-2xl border border-accent/60 bg-accent/20 px-6 py-3 font-medium text-accent transition hover:bg-accent/30 cursor-pointer w-full sm:w-auto"
+                >
+                  <FaAndroid />
+                  Download Latest APK
+                </button>
+                <a
+                  href="https://github.com/oof2510/geoguessapp"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center justify-center gap-3 rounded-2xl border border-white/10 px-6 py-3 font-medium text-textSecondary transition hover:border-accent/50 hover:text-accent w-full sm:w-auto"
+                >
+                  <FaGithub />
+                  View source
+                </a>
+              </div>
+              <div className="flex flex-col gap-3">
+                <p className="text-sm text-textSecondary flex items-center gap-2 flex-wrap">
+                  On <FaApple className="inline text-white" /> iOS or{" "}
+                  <FaDesktop className="inline text-white" /> desktop, or just
+                  wanna try it out before you download?
+                </p>
+                <a
+                  href="/play"
+                  className="flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-6 py-3 font-medium text-textSecondary transition hover:border-accent/50 hover:bg-white/10 hover:text-accent w-full sm:w-auto"
+                >
+                  Play in Browser
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -217,14 +217,14 @@ function GeoGuess() {
           title="Every game is a world tour"
           description="Made to be fun, competitive, and with infinite replayability."
         />
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
           {features.map((feature) => (
             <motion.div
               key={feature.title}
-              className="rounded-3xl border border-white/10 bg-surface/70 p-6 shadow-lg"
+              className="rounded-3xl border border-white/10 bg-surface/70 p-5 sm:p-6 shadow-lg"
               whileHover={{ y: -8 }}
             >
-              <h3 className="text-xl font-semibold text-textPrimary">
+              <h3 className="text-lg sm:text-xl font-semibold text-textPrimary">
                 {feature.title}
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-textSecondary">
@@ -235,9 +235,9 @@ function GeoGuess() {
         </div>
       </section>
 
-      <section className="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
+      <section className="grid gap-6 sm:gap-8 lg:gap-10 lg:grid-cols-[1.4fr_1fr]">
         <motion.div
-          className="rounded-3xl border border-white/10 bg-surface/80 p-8 shadow-lg"
+          className="rounded-3xl border border-white/10 bg-surface/80 p-6 sm:p-8 shadow-lg"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
@@ -248,7 +248,7 @@ function GeoGuess() {
             title="Tech that keeps the globe spinning"
             description="From typed React Native screens to hardened API infra, everything snaps together for fast gameplay and trustworthy scoring."
           />
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
+          <div className="mt-6 sm:mt-8 grid gap-5 sm:gap-6 md:grid-cols-2">
             <div>
               <h3 className="text-sm uppercase tracking-[0.3em] text-accent">
                 Frontend
@@ -294,13 +294,13 @@ function GeoGuess() {
           </div>
         </motion.div>
         <motion.div
-          className="flex flex-col gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-accent/10 via-accentMuted/10 to-transparent p-8"
+          className="flex flex-col gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-accent/10 via-accentMuted/10 to-transparent p-6 sm:p-8"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ delay: 0.1, duration: 0.6 }}
         >
-          <h3 className="text-xl font-semibold text-textPrimary">
+          <h3 className="text-lg sm:text-xl font-semibold text-textPrimary">
             Why it's special
           </h3>
           <div className="space-y-4 text-sm text-textSecondary">
@@ -350,17 +350,17 @@ function GeoGuess() {
         </motion.div>
       </section>
 
-      <section className="rounded-3xl border border-white/10 bg-surface/70 p-8 shadow-lg">
+      <section className="rounded-3xl border border-white/10 bg-surface/70 p-6 sm:p-8 shadow-lg">
         <SectionHeading
           eyebrow="Roadmap"
           title="What's next"
           description="See what's in the works."
         />
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
           {roadmapItems.map((item) => (
             <div
               key={item}
-              className="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-textSecondary"
+              className="rounded-2xl border border-white/10 bg-white/5 p-3 sm:p-4 text-sm text-textSecondary"
             >
               {item}
             </div>
