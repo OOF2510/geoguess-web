@@ -400,7 +400,7 @@ function WebPlay() {
                 </span>
               ) : (
                 <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-emerald-200">
-                  App Check secured
+                  Connected to leaderboard
                 </span>
               )}
             </div>
