@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaTrophy } from "react-icons/fa6";
 import {
@@ -9,7 +10,7 @@ import {
 import { startGameSession, submitScore } from "../utils/leaderboard.js";
 
 const TOTAL_ROUNDS = 10;
-
+  
 function WebPlay() {
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
@@ -377,6 +378,14 @@ function WebPlay() {
           This web version mirrors the Android experience: ten rounds, three guesses per image, and leaderboard-ready scoring powered
           by the same <a href="https://github.com/oof2510/geoguess-api" target="_blank" rel="noopener noreferrer">GeoGuess API</a> as the Android app.
         </p>
+        <div className="flex flex-wrap gap-3">
+          <Link
+            to="/play/ai"
+            className="inline-flex items-center gap-2 rounded-2xl border border-accent/40 bg-accent/20 px-4 py-2 text-sm font-semibold text-accent transition hover:bg-accent/30"
+          >
+            Play vs AI beta
+          </Link>
+        </div>
       </div>
 
       <div className="relative grid gap-6 rounded-3xl border border-white/10 bg-surface/80 p-5 sm:p-6 md:p-8 shadow-glow lg:grid-cols-[1.25fr_0.85fr]">
