@@ -184,7 +184,7 @@ function AiDuel() {
           Challenge GeoFinder's AI opponent
         </h1>
         <p className="max-w-3xl text-sm sm:text-base leading-relaxed text-textSecondary">
-          Play a five-round match against GeoAI, powered by <code className="text-xs bg-background/60 px-1.5 py-0.5 rounded border border-white/10">mistral-small-3.2-24b-instruct</code>: guess the country from the image,
+          Play a five-round match against GeoAI, powered by <code className="text-xs bg-background/60 px-1.5 py-0.5 rounded border border-white/10">mistral-small-3.2-24b-instruct</code> (and <code className="text-xs bg-background/60 px-1.5 py-0.5 rounded border border-white/10">llama-4-scout</code> upon error): guess the country from the image,
           then see how the AI model responded, complete with reasoning and confidence ratings.
         </p>
         <div className="flex flex-wrap gap-3">
