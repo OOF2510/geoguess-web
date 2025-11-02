@@ -218,9 +218,6 @@ function AiDuel() {
           <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4">
             <div>
               <p className="text-xs sm:text-sm font-medium text-textSecondary">{roundLabel}</p>
-              <p className="text-xl sm:text-2xl font-semibold text-white">
-                Match score
-              </p>
             </div>
             <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-background/60 px-4 py-2 text-xs sm:text-sm text-textSecondary">
               <span className="flex items-center gap-2 text-white">
@@ -269,7 +266,7 @@ function AiDuel() {
           {status === "in-progress" && currentRound && !latestResult && (
             <form className="flex flex-col gap-3 sm:gap-4" onSubmit={handleSubmitGuess}>
               <label className="text-sm font-medium text-textSecondary" htmlFor="ai-guess-input">
-                Guess the country to lock in your round
+                Guess the country
               </label>
               <input
                 id="ai-guess-input"
