@@ -184,8 +184,8 @@ function AiDuel() {
           Challenge GeoFinder's AI opponent
         </h1>
         <p className="max-w-3xl text-sm sm:text-base leading-relaxed text-textSecondary">
-          Play a five-round face-off against the AI: guess the country from the Mapillary image,
-          then see how the model responded, complete with reasoning and confidence ratings.
+          Play a five-round match against GeoAI, powered by <code className="text-xs bg-background/60 px-1.5 py-0.5 rounded border border-white/10">mistral-small-3.2-24b-instruct</code>: guess the country from the image,
+          then see how the AI model responded, complete with reasoning and confidence ratings.
         </p>
         <div className="flex flex-wrap gap-3">
           <Link
@@ -360,7 +360,7 @@ function AiDuel() {
               </div>
             ) : (
               <p className="mt-3 text-sm text-textSecondary">
-                Submit a guess to see how you stack up against the AI this round.
+                Submit a guess to see if you can beat the AI!
               </p>
             )}
           </div>
