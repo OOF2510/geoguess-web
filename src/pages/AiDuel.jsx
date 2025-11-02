@@ -326,12 +326,24 @@ function AiDuel() {
                     {coordinateText}
                   </p>
                 )}
-                <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-3 text-emerald-100">
-                  <p className="text-xs uppercase tracking-[0.3em] text-emerald-200/80">Your guess</p>
+                <div className={`rounded-2xl border p-3 text-100 ${
+                  latestResult.playerResult?.isCorrect 
+                    ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-100" 
+                    : "border-red-500/30 bg-red-500/10 text-red-100"
+                }`}>
+                  <p className={`text-xs uppercase tracking-[0.3em] ${
+                  latestResult.playerResult?.isCorrect 
+                    ? "text-emerald-200/80" 
+                    : "text-red-200/80"
+                }`}>Your guess</p>
                   <p className="mt-1 text-base font-semibold text-white">
                     {latestResult.playerResult?.guess || "No guess"}
                   </p>
-                  <p className="text-xs text-emerald-200/80">
+                  <p className={`text-xs ${
+                  latestResult.playerResult?.isCorrect 
+                    ? "text-emerald-200/80" 
+                    : "text-red-200/80"
+                }`}>
                     {latestResult.playerResult?.isCorrect ? "Correct" : "Incorrect"}
                   </p>
                 </div>
