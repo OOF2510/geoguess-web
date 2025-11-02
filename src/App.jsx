@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
 import GeoGuess from './pages/GeoGuess.jsx';
 import WebPlay from './pages/WebPlay.jsx';
+import AiDuel from './pages/AiDuel.jsx';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<GeoGuess />} />
           <Route path="/play" element={<WebPlay />} />
+          <Route path="/play/ai" element={<AiDuel />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

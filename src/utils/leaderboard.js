@@ -1,22 +1,8 @@
-import { ensureAppCheck, getValidAppCheckToken } from './firebaseAppCheck.js';
-
-const API_BASE_URL = 'https://geo.api.oof2510.space';
-
-async function withAppCheck(headers = {}) {
-  await ensureAppCheck();
-  const token = await getValidAppCheckToken();
-  if (token) {
-    return {
-      ...headers,
-      'X-Firebase-AppCheck': token,
-    };
-  }
-  return headers;
-}
+import { API_BASE_URL, withAppCheckHeaders } from './apiClient.js';
 
 export async function startGameSession() {
   try {
-    const headers = await withAppCheck({ 'Content-Type': 'application/json' });
+    const headers = await withAppCheckHeaders({ 'Content-Type': 'application/json' });
     const response = await fetch(`${API_BASE_URL}/game/start`, {
       method: 'POST',
       headers,
@@ -36,7 +22,7 @@ export async function startGameSession() {
 
 export async function submitScore(gameSessionId, score, metadata = {}) {
   try {
-    const headers = await withAppCheck({ 'Content-Type': 'application/json' });
+    const headers = await withAppCheckHeaders({ 'Content-Type': 'application/json' });
     const response = await fetch(`${API_BASE_URL}/game/submit`, {
       method: 'POST',
       headers,

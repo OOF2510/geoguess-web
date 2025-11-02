@@ -5,6 +5,7 @@ import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
 const links = [
   { to: "/", label: "Overview" },
   { to: "/play", label: "Play the Web Demo" },
+  { to: "/play/ai", label: "Play vs AI" },
 ];
 
 function Navbar() {

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes, FaGithub } from "react-icons/fa";
+import ReactMarkdown from 'react-markdown'
 
 function ReleaseNotesModal({ isOpen, onClose, releaseData }) {
   const modalRef = useRef(null);
@@ -81,53 +82,9 @@ function ReleaseNotesModal({ isOpen, onClose, releaseData }) {
             <div className="overflow-y-auto p-6 max-h-[calc(80vh-120px)]">
               <div className="prose prose-invert max-w-none">
                 {releaseData.body ? (
-                  <div className="space-y-4 text-textSecondary whitespace-pre-wrap">
-                    {releaseData.body.split("\n").map((line, index) => {
-                      // Handle markdown headers
-                      if (line.startsWith("## ")) {
-                        return (
-                          <h3
-                            key={index}
-                            className="text-lg font-semibold text-textPrimary mt-6 mb-2"
-                          >
-                            {line.replace("## ", "")}
-                          </h3>
-                        );
-                      }
-                      if (line.startsWith("# ")) {
-                        return (
-                          <h2
-                            key={index}
-                            className="text-xl font-semibold text-textPrimary mt-6 mb-2"
-                          >
-                            {line.replace("# ", "")}
-                          </h2>
-                        );
-                      }
-                      // Handle list items
-                      if (line.trim().startsWith("- ") || line.trim().startsWith("* ")) {
-                        return (
-                          <li
-                            key={index}
-                            className="flex items-start gap-2 ml-4"
-                          >
-                            <span className="h-1.5 w-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
-                            <span>{line.trim().substring(2)}</span>
-                          </li>
-                        );
-                      }
-                      // Empty lines
-                      if (line.trim() === "") {
-                        return <div key={index} className="h-2" />;
-                      }
-                      // Regular paragraphs
-                      return (
-                        <p key={index} className="leading-relaxed">
-                          {line}
-                        </p>
-                      );
-                    })}
-                  </div>
+                   <ReactMarkdown>
+                    {releaseData.body}
+                  </ReactMarkdown>
                 ) : (
                   <p className="text-textSecondary">
                     No release notes available for this version.
