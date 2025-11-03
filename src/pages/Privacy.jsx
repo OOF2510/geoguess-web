@@ -7,14 +7,14 @@ export default function Privacy() {
     code({ inline, className, children, ...props }) {
       const match = /language-(\w+)/.exec(className || "");
       return !inline ? (
-        <pre className="mt-4 mb-8 overflow-x-auto rounded-lg bg-background/60 p-4">
+        <pre className="mt-4 mb-0 overflow-x-auto rounded-lg bg-background/60 p-4">
           <code className={className} {...props}>
             {children}
           </code>
         </pre>
       ) : (
         <code
-          className="text-xs bg-background/60 px-1.5 py-0.5 rounded border border-white/10 font-mono"
+          className="text-xs bg-background/60 px-1.5 py-0.5 rounded border border-white/10 inline-block"
           {...props}
         >
           {children}
