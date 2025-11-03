@@ -5,19 +5,20 @@ import content from "./PrivacyPolicy.md?raw";
 export default function Privacy() {
   const components = {
     code({ className, children, ...props }) {
+      const text = String(children).replace(/^`+|`+$/g, '').trim();
       return (
         <code
           className="text-xs bg-background/60 px-1.5 py-0.5 rounded border border-white/10"
           {...props}
         >
-          {children}
+          {text}
         </code>
       );
     },
   };
 
   return (
-    <div className="prose prose-invert max-w-none mx-auto">
+    <div className="prose prose-invert max-w-4xl mx-auto overflow-x-auto px-4 sm:px-0">
       <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
         {content}
       </ReactMarkdown>
