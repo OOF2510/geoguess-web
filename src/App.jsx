@@ -3,6 +3,7 @@ import Navbar from './components/Navbar.jsx';
 import GeoGuess from './pages/GeoGuess.jsx';
 import WebPlay from './pages/WebPlay.jsx';
 import AiDuel from './pages/AiDuel.jsx';
+import Privacy from './pages/Privacy.jsx';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<GeoGuess />} />
           <Route path="/play" element={<WebPlay />} />
           <Route path="/play/ai" element={<AiDuel />} />
+          <Route path="/privacy" element={<Privacy />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
