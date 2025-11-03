@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes, FaGithub } from "react-icons/fa";
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 function ReleaseNotesModal({ isOpen, onClose, releaseData }) {
   const modalRef = useRef(null);
@@ -82,7 +83,7 @@ function ReleaseNotesModal({ isOpen, onClose, releaseData }) {
             <div className="overflow-y-auto p-6 max-h-[calc(80vh-120px)]">
               <div className="prose prose-invert max-w-none">
                 {releaseData.body ? (
-                   <ReactMarkdown>
+                   <ReactMarkdown remarkPlugins={[remarkGfm]}>
                     {releaseData.body}
                   </ReactMarkdown>
                 ) : (
