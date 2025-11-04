@@ -5,11 +5,13 @@ import GeoGuess from './pages/GeoGuess.jsx';
 import WebPlay from './pages/WebPlay.jsx';
 import AiDuel from './pages/AiDuel.jsx';
 import Privacy from './pages/Privacy.jsx';
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
   return (
     <div className="min-h-screen bg-background text-textPrimary flex flex-col">
       <Navbar />
+      <Analytics />
       <main className="mx-auto flex max-w-6xl flex-1 flex-col gap-24 px-6 pb-24 pt-16 sm:px-10 lg:px-16">
         <Routes>
           <Route path="/" element={<GeoGuess />} />
