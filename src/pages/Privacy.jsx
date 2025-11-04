@@ -18,7 +18,7 @@ export default function Privacy() {
   };
 
   return (
-    <div className="prose prose-invert max-w-4xl mx-auto overflow-x-auto px-4 sm:px-0">
+    <div className="prose prose-invert max-w-4xl mx-auto w-full break-words prose-a:break-words prose-code:break-words px-4 sm:px-0">
       <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
         {content}
       </ReactMarkdown>
