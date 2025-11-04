@@ -23,7 +23,7 @@ const features = [
     title: "Street-level immersion",
     description: (
       <>
-        Curated Mapillary imagery served from my{" "}
+        Random Mapillary imagery served from my{" "}
         <a
           className="text-accent underline decoration-accent/40 underline-offset-4"
           href="https://github.com/oof2510/geoguess-api"
@@ -37,7 +37,12 @@ const features = [
     ),
   },
   {
-    title: "Secure leaderboards",
+    title: "Play against AI",
+    description:
+      "Play against an AI that gets the same image as you, and tries to guess the country. See if you can beat it!",
+  },
+  {
+    title: "Global leaderboards",
     description:
       "Climb global leaderboards to see how you stack up against other explorers while we keep every match fair.",
   },
