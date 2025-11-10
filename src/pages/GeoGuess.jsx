@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   FaAndroid,
+  FaGooglePlay,
   FaApple,
   FaArrowUpRightFromSquare,
   FaDesktop,
@@ -12,6 +13,7 @@ import {
 import { PiRankingFill } from "react-icons/pi";
 import SectionHeading from "../components/SectionHeading.jsx";
 import ReleaseNotesModal from "../components/ReleaseNotesModal.jsx";
+import EarlyAccessModal from "../components/EarlyAccessModal.jsx";
 
 const features = [
   {
@@ -72,7 +74,7 @@ const techStack = {
 };
 
 const roadmapItems = [
-  "Play store release",
+  "Full Play Store release (currently in closed testing)",
   "API improvements",
   "1v1 multiplayer",
 ];
@@ -88,6 +90,7 @@ function GeoGuess() {
   const [activeScreenshot, setActiveScreenshot] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [releaseData, setReleaseData] = useState(null);
+  const [isEarlyAccessModalOpen, setIsEarlyAccessModalOpen] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -99,6 +102,10 @@ function GeoGuess() {
 
   const handleDownloadAPK = async () => {
     try {
+      // If the early access modal is open, close it
+      if (isEarlyAccessModalOpen) {
+        setIsEarlyAccessModalOpen(false);
+      }
       const response = await fetch(
         "https://api.github.com/repos/oof2510/geoguessapp/releases/latest",
       );
@@ -118,6 +125,11 @@ function GeoGuess() {
         "_blank",
       );
     }
+  };
+
+  const handleJoinTesting = (e) => {
+    e.preventDefault();
+    setIsEarlyAccessModalOpen(true);
   };
 
   return (
@@ -181,7 +193,16 @@ function GeoGuess() {
               Mapillary.
             </p>
             <div className="flex flex-col gap-4">
-              <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+              <div className="flex flex-col sm:flex-row flex-wrap items-center gap-3 sm:gap-4">
+                <button
+                  onClick={handleJoinTesting}
+                  type="button"
+                  className="group flex items-center justify-center gap-3 rounded-2xl border border-accent/60 bg-accent/20 px-6 py-3 font-medium text-accent transition hover:bg-accent/30 cursor-pointer w-full sm:w-auto"
+                >
+                  <FaGooglePlay />
+                  Join Early Access
+                </button>
+                <span className="text-[0.7rem] sm:text-sm text-textSecondary">or</span>
                 <button
                   onClick={handleDownloadAPK}
                   type="button"
@@ -190,16 +211,16 @@ function GeoGuess() {
                   <FaAndroid />
                   Download Latest APK
                 </button>
-                <a
-                  href="https://github.com/oof2510/geoguessapp"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center justify-center gap-3 rounded-2xl border border-white/10 px-6 py-3 font-medium text-textSecondary transition hover:border-accent/50 hover:text-accent w-full sm:w-auto"
-                >
-                  <FaGithub />
-                  View source
-                </a>
               </div>
+              <a
+                href="https://github.com/oof2510/geoguessapp"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-3 rounded-2xl border border-white/10 px-6 py-3 font-medium text-textSecondary transition hover:border-accent/50 hover:text-accent w-full sm:w-auto"
+              >
+                <FaGithub />
+                View source
+              </a>
               <div className="flex flex-col gap-3">
                 <p className="text-[0.7rem] sm:text-sm text-textSecondary flex items-center justify-center gap-1 flex-wrap leading-tight">
                   On <FaApple className="inline text-white text-xs" /> or{" "}
@@ -412,6 +433,10 @@ function GeoGuess() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         releaseData={releaseData}
+      />
+      <EarlyAccessModal
+        isOpen={isEarlyAccessModalOpen}
+        onClose={() => setIsEarlyAccessModalOpen(false)}
       />
     </div>
   );
