@@ -193,23 +193,23 @@ function GeoGuess() {
               Mapillary.
             </p>
             <div className="flex flex-col gap-4">
-              <div className="flex flex-col sm:flex-row flex-wrap items-center gap-3 sm:gap-4">
+              <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 w-full">
                 <button
                   onClick={handleJoinTesting}
                   type="button"
-                  className="group flex items-center justify-center gap-3 rounded-2xl border border-accent/60 bg-accent/20 px-6 py-3 font-medium text-accent transition hover:bg-accent/30 cursor-pointer w-full sm:w-auto"
+                  className="group flex items-center justify-center gap-2 rounded-2xl border border-accent/60 bg-accent/20 px-4 py-2.5 sm:px-5 sm:py-3 font-medium text-accent transition hover:bg-accent/30 cursor-pointer w-full sm:w-auto"
                 >
-                  <FaGooglePlay />
-                  Join Early Access
+                  <FaGooglePlay className="text-sm sm:text-base" />
+                  <span>Join Early Access</span>
                 </button>
-                <span className="text-[0.7rem] sm:text-sm text-textSecondary">or</span>
+                <span className="text-sm text-textSecondary px-1">or</span>
                 <button
                   onClick={handleDownloadAPK}
                   type="button"
-                  className="group flex items-center justify-center gap-3 rounded-2xl border border-accent/60 bg-accent/20 px-6 py-3 font-medium text-accent transition hover:bg-accent/30 cursor-pointer w-full sm:w-auto"
+                  className="group flex items-center justify-center gap-2 rounded-2xl border border-accent/60 bg-accent/20 px-4 py-2.5 sm:px-5 sm:py-3 font-medium text-accent transition hover:bg-accent/30 cursor-pointer w-full sm:w-auto"
                 >
-                  <FaAndroid />
-                  Download APK
+                  <FaAndroid className="text-sm sm:text-base" />
+                  <span>Download APK</span>
                 </button>
               </div>
               <a
