@@ -209,7 +209,7 @@ function GeoGuess() {
                   className="group flex items-center justify-center gap-3 rounded-2xl border border-accent/60 bg-accent/20 px-6 py-3 font-medium text-accent transition hover:bg-accent/30 cursor-pointer w-full sm:w-auto"
                 >
                   <FaAndroid />
-                  Download Latest APK
+                  Download APK
                 </button>
               </div>
               <a
