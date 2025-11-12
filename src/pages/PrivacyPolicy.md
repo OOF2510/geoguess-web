@@ -1,6 +1,6 @@
 # GeoFinder Privacy Policy
 
-_Last updated: 11-07-2025_
+_Last updated: 11-12-2025_
 
 ## Who I Am
 Hey, I’m the solo developer behind **GeoFinder**, a country-guessing game that shows street-level images from Mapillary. This policy explains what I collect (very little), how I use it, and your choices.
@@ -38,7 +38,7 @@ I only share data as needed to operate the game, and **all of these calls are ma
 - **Mapillary (Images)** — Street-level imagery and related metadata (server requests images and credits).  
 - **OpenStreetMap Nominatim (Reverse-Geocoding)** — To label an image with a country (server-side).  
 - **BigDataCloud (Reverse-Geocoding)** — Fallback reverse-geocoding (server-side).  
-- **Geocode.xyz (Fallback Geocoding)** — Additional geocoding provider (server-side).  
+- **Open-Metro (Fallback Geocoding)** — Additional geocoding provider (server-side).  
 - **GeoNames (Fallback Geocoding)** — Additional geocoding provider (server-side).  
 - **OpenRouter / Model Providers (for AI Duels)** — To generate the AI’s guesses from an image prompt (server-side).  
   - This includes **Polaris Alpha**, a model provided through OpenRouter. Prompts and responses sent to Polaris Alpha **may be logged by the provider and used to improve the model**. The only data sent to the model is my prompt, the streetview image, your guess, and the model's guess. OpenRouter does **not control** how each model handles data, so please review their terms and model-specific policies if you’d like to know more.  
@@ -48,7 +48,7 @@ Helpful links:
 - Mapillary: https://www.mapillary.com/terms  •  https://www.mapillary.com/privacy  
 - OpenStreetMap (OSMF): https://wiki.osmfoundation.org/wiki/Privacy_Policy  
 - BigDataCloud: https://www.bigdatacloud.com/privacy  
-- Geocode.xyz: https://geocode.xyz/api  
+- Open-Meteo: https://open-meteo.com/en/terms
 - GeoNames: https://www.geonames.org/export/  •  https://www.geonames.org/about.html  
 - OpenRouter: https://openrouter.ai/privacy  
 - Polaris Alpha (OpenRouter Model): https://openrouter.ai/openrouter/polaris-alpha  
