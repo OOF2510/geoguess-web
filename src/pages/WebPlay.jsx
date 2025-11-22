@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaTrophy } from "react-icons/fa6";
-import { Pannellum } from "react-pannellum";
 import {
   getImageWithCountry,
   matchGuess,
@@ -41,7 +40,6 @@ function WebPlay() {
   const [leaderboardData, setLeaderboardData] = useState([]);
   const [leaderboardLoading, setLeaderboardLoading] = useState(false);
   const [leaderboardError, setLeaderboardError] = useState("");
-  const [panoramaMode, setPanoramaMode] = useState(false);
 
   const prefetchRequestId = useRef(0);
   const summaryTimeoutRef = useRef(null);
@@ -109,7 +107,7 @@ function WebPlay() {
   const prefetchNextRound = async () => {
     const requestId = ++prefetchRequestId.current;
     try {
-      const result = await getImageWithCountry({ pano: panoramaMode });
+      const result = await getImageWithCountry();
       if (result && requestId === prefetchRequestId.current) {
         setNextRound(result);
         setPrefetchTimestamp(Date.now());
@@ -158,7 +156,7 @@ function WebPlay() {
         setNextRound(null);
         setPrefetchTimestamp(null);
       } else {
-        roundData = await getImageWithCountry({ pano: panoramaMode });
+        roundData = await getImageWithCountry();
       }
 
       if (!roundData) {
@@ -305,14 +303,6 @@ function WebPlay() {
     startGame();
   };
 
-  const togglePanoramaMode = () => {
-    setPanoramaMode(!panoramaMode);
-    setNextRound(null);
-    setPrefetchTimestamp(null);
-    prefetchRequestId.current = 0;
-    startFreshGame();
-  };
-
   const handleSubmitScore = async () => {
     if (!gameSessionId || currentScore <= 0) {
       setShowSummary(false);
@@ -412,30 +402,16 @@ function WebPlay() {
                 </span>
               </p>
             </div>
-            <div className="flex flex-col items-end gap-3">
-              <div className="flex items-center gap-3 text-xs text-textSecondary">
-                {offlineMode ? (
-                  <span className="rounded-full border border-yellow-500/40 bg-yellow-500/10 px-3 py-1 text-yellow-200">
-                    Offline mode
-                  </span>
-                ) : (
-                  <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-emerald-200">
-                    Connected to leaderboard
-                  </span>
-                )}
-              </div>
-              <button
-                type="button"
-                onClick={togglePanoramaMode}
-                disabled={loading}
-                className={`rounded-2xl border px-4 py-2 text-xs font-semibold transition touch-manipulation ${
-                  panoramaMode
-                    ? "border-blue-500/50 bg-blue-500/20 text-blue-200 hover:bg-blue-500/30"
-                    : "border-white/20 bg-white/10 text-textSecondary hover:border-white/30 hover:bg-white/20"
-                } disabled:cursor-not-allowed disabled:opacity-70`}
-              >
-                {panoramaMode ? "🌐 Panorama" : "📷 Normal"}
-              </button>
+            <div className="flex items-center gap-3 text-xs text-textSecondary">
+              {offlineMode ? (
+                <span className="rounded-full border border-yellow-500/40 bg-yellow-500/10 px-3 py-1 text-yellow-200">
+                  Offline mode
+                </span>
+              ) : (
+                <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-emerald-200">
+                  Connected to leaderboard
+                </span>
+              )}
             </div>
           </div>
 
@@ -443,33 +419,17 @@ function WebPlay() {
             <div className="aspect-[4/3] sm:aspect-[16/9] w-full bg-black/40">
               <AnimatePresence mode="wait">
                 {image ? (
-                  panoramaMode ? (
-                    <Pannellum
-                      key={image.url}
-                      image={image.url}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                      }}
-                      pitch={0}
-                      yaw={0}
-                      hfov={100}
-                      autoLoad={true}
-                      orientationOnByDefault={false}
-                    />
-                  ) : (
-                    <motion.img
-                      key={image.url}
-                      src={image.url}
-                      alt="GeoFinder round"
-                      className="h-full w-full cursor-zoom-in object-cover"
-                      initial={{ opacity: 0.2, scale: 1.02 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.98 }}
-                      transition={{ duration: 0.6, ease: "easeInOut" }}
-                      onClick={() => setZoomOpen(true)}
-                    />
-                  )
+                  <motion.img
+                    key={image.url}
+                    src={image.url}
+                    alt="GeoFinder round"
+                    className="h-full w-full cursor-zoom-in object-cover"
+                    initial={{ opacity: 0.2, scale: 1.02 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                    onClick={() => setZoomOpen(true)}
+                  />
                 ) : (
                   <motion.div
                     key="placeholder"

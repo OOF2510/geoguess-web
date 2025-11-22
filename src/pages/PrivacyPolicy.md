@@ -1,6 +1,6 @@
 # GeoFinder Privacy Policy
 
-_Last updated: 11-21-2025_
+_Last updated: 11-12-2025_
 
 ## Who I Am
 Hey, I’m the solo developer behind **GeoFinder**, a country-guessing game that shows street-level images from Mapillary. This policy explains what I collect (very little), how I use it, and your choices.
@@ -41,7 +41,7 @@ I only share data as needed to operate the game, and **all of these calls are ma
 - **Open-Metro (Fallback Geocoding)** — Additional geocoding provider (server-side).  
 - **GeoNames (Fallback Geocoding)** — Additional geocoding provider (server-side).  
 - **OpenRouter / Model Providers (for AI Duels)** — To generate the AI’s guesses from an image prompt (server-side).  
-  - OpenRouter does **not control** how each model handles data, so please review their terms and model-specific policies if you’d like to know more.  
+  - This includes **Polaris Alpha**, a model provided through OpenRouter. Prompts and responses sent to Polaris Alpha **may be logged by the provider and used to improve the model**. The only data sent to the model is my prompt, the streetview image, your guess, and the model's guess. OpenRouter does **not control** how each model handles data, so please review their terms and model-specific policies if you’d like to know more.  
 - **Firebase (App Check)** — Server-side verification of App Check tokens to ensure requests come from a legit app build.
 
 Helpful links:  
@@ -51,12 +51,13 @@ Helpful links:
 - Open-Meteo: https://open-meteo.com/en/terms
 - GeoNames: https://www.geonames.org/export/  •  https://www.geonames.org/about.html  
 - OpenRouter: https://openrouter.ai/privacy  
+- Polaris Alpha (OpenRouter Model): https://openrouter.ai/openrouter/polaris-alpha  
 - Firebase (Google): https://policies.google.com/privacy
 
 ## Data Retention
 - **Game sessions**: Expire automatically (about **1 hour**) after creation; they’re auto-deleted from the database.
 - **Scores**: Kept so the public leaderboard can function. Scores don’t include names, emails, or other personal identifiers.
-- **AI Duels data**: I don’t store prompts or responses from AI Duels myself. However, third-party model providers **may log and retain** that data under their own privacy policies. The only data sent to the model is my prompt, the streetview image, your guess, and the model's guess.
+- **AI Duels data**: I don’t store prompts or responses from AI Duels myself. However, third-party model providers like Polaris Alpha **may log and retain** that data under their own privacy policies. The only data sent to the model is my prompt, the streetview image, your guess, and the model's guess.
 
 If you want me to remove a specific leaderboard entry, email **contact@oof2510.space** and include whatever info you have (e.g., approximate time and score). I’ll do my best to find and delete it.
 
