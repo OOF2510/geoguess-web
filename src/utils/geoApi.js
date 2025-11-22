@@ -1,8 +1,11 @@
-const API_URL = 'https://geo.api.oof2510.space/getImage';
+const API_URL = 'https://geo.api.oof2510.space/';
 
-export async function getImageWithCountry() {
+export async function getImageWithCountry({ pano = false }) {
   try {
-    const response = await fetch(API_URL, {
+    let endpoint;
+    if (pano) endpoint = `${API_URL}/getPano`;
+    else endpoint = `${API_URL}/getImage`;
+    const response = await fetch(endpoint, {
       headers: {
         'User-Agent': 'geoguess-web/1.0',
       },
