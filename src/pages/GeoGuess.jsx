@@ -84,6 +84,7 @@ const screenshots = [
   "/screenshots/geofinder-2.webp",
   "/screenshots/geofinder-3.webp",
   "/screenshots/geofinder-4.webp",
+  "/screenshots/geofinder-5.webp",
 ];
 
 function GeoGuess() {
